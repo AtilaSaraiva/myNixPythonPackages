@@ -15,4 +15,11 @@ rec {
     inherit (self) fetchFromGitHub;
     contexttimer = self.contexttimer;
   };
+
+  devito = super.python3Packages.callPackage ./pkgs/devito {
+    inherit (self.python3Packages) anytree nbval sympy scipy cached-property psutil py-cpuinfo cgen click multidict distributed pytestCheckHook matplotlib pytest-xdist;
+    inherit (self) fetchFromGitHub;
+    pyrevolve = self.pyrevolve;
+    codepy = self.codepy;
+  };
 }
