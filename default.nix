@@ -23,6 +23,11 @@ rec {
     codepy = self.codepy;
   };
 
+  curvelab = super.callPackage ./pkgs/packages/curvelab {
+    inherit (self) fetchurl;
+    fftw2 = self.fftw2;
+  };
+
   fftw2 = super.callPackage ./pkgs/packages/fftw2 {
     inherit (self) fetchurl;
   };
