@@ -22,4 +22,8 @@ rec {
     pyrevolve = self.pyrevolve;
     codepy = self.codepy;
   };
+
+  fftw2 = super.callPackage ./pkgs/packages/fftw2 {
+    inherit (self) fetchurl;
+  };
 }

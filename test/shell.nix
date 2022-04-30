@@ -10,6 +10,7 @@ in
 mkShell {
   buildInputs = [
     python-with-my-packages
+    fftw2
   ];
 }
 
