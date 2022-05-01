@@ -2,7 +2,6 @@
 with (import <nixpkgs> { overlays = [ (import ../.) ];});
 let
   my-python-packages = python-packages: with python-packages; [
-    devito
     pylops
     # other python packages you want
   ];
