@@ -16,6 +16,10 @@ rec {
     contexttimer = self.contexttimer;
   };
 
+  pylops = super.python3Packages.callPackage ./pkgs/python-packages/pylops {
+    inherit (self.python3Packages) scipy pyfftw pywavelets numba llvmlite scikit-fmm setuptools-scm;
+  };
+
   devito = super.python3Packages.callPackage ./pkgs/python-packages/devito {
     inherit (self.python3Packages) anytree nbval sympy scipy cached-property psutil py-cpuinfo cgen click multidict distributed pytestCheckHook matplotlib pytest-xdist;
     inherit (self) fetchFromGitHub;
