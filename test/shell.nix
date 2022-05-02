@@ -7,6 +7,7 @@ with import sources.nixpkgs {
 let
   my-python-packages = python-packages: with python-packages; [
     curvelops
+    devito
     # other python packages you want
   ];
   python-with-my-packages = python3.withPackages my-python-packages;

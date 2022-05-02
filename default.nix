@@ -1,21 +1,5 @@
 self: super:
 rec {
-  codepy = super.python3Packages.callPackage ./pkgs/python-packages/codepy {
-    inherit (self.python3Packages) pytools appdirs six cgen;
-    inherit (self) fetchFromGitHub;
-  };
-
-  contexttimer = super.python3Packages.callPackage ./pkgs/python-packages/contexttimer {
-    inherit (self.python3Packages) mock;
-    inherit (self) fetchFromGitHub fetchpatch;
-  };
-
-  pyrevolve = super.python3Packages.callPackage ./pkgs/python-packages/pyrevolve {
-    inherit (self.python3Packages) versioneer cython numpy pytest;
-    inherit (self) fetchFromGitHub;
-    contexttimer = self.contexttimer;
-  };
-
   pylops = super.python3Packages.callPackage ./pkgs/python-packages/pylops {
     inherit (self.python3Packages) scipy pyfftw pywavelets numba llvmlite scikit-fmm setuptools-scm;
   };
@@ -28,12 +12,18 @@ rec {
     curvelab = self.curvelab;
   };
 
-  devito = super.python3Packages.callPackage ./pkgs/python-packages/devito {
-    inherit (self.python3Packages) anytree nbval sympy scipy cached-property psutil py-cpuinfo cgen click multidict distributed pytestCheckHook matplotlib pytest-xdist;
-    inherit (self) fetchFromGitHub;
-    pyrevolve = self.pyrevolve;
-    codepy = self.codepy;
+  pythonOverrides = python-self: python-super: {
+    devito = python-super.devito.overrideAttrs (oldAttrs: {
+      src = super.fetchFromGitHub {
+        owner = "devitocodes";
+        repo = "devito";
+        rev = "7cb52eded4038c1a0ee92cfd04d3412c48f2fb7c";
+        sha256 = "sha256-75hkkufQK9Nv65DBz8cmYTfkxH/UUWDQK/rGUDULvjM=";
+      };
+    });
   };
+
+  python3 = super.python3.override { packageOverrides = self.pythonOverrides; };
 
   curvelab = super.callPackage ./pkgs/packages/curvelab {
     inherit (self) fetchurl;
