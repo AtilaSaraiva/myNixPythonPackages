@@ -1,5 +1,9 @@
-# python.nix
-with (import <nixpkgs> { overlays = [ (import ../.) ];});
+{ sources ? import ./nix/sources.nix }:
+with import sources.nixpkgs {
+  overlays = [
+    (import ../.)
+  ];
+};
 let
   my-python-packages = python-packages: with python-packages; [
     pylops
