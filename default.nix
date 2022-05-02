@@ -20,6 +20,14 @@ rec {
     inherit (self.python3Packages) scipy pyfftw pywavelets numba llvmlite scikit-fmm setuptools-scm;
   };
 
+  curvelops = super.python3Packages.callPackage ./pkgs/python-packages/curvelops {
+    inherit (self.python3Packages) scipy pybind11 pytestCheckHook;
+    inherit (self) fetchFromGitHub;
+    pylops = self.pylops;
+    fftw2 = self.fftw2;
+    curvelab = self.curvelab;
+  };
+
   devito = super.python3Packages.callPackage ./pkgs/python-packages/devito {
     inherit (self.python3Packages) anytree nbval sympy scipy cached-property psutil py-cpuinfo cgen click multidict distributed pytestCheckHook matplotlib pytest-xdist;
     inherit (self) fetchFromGitHub;

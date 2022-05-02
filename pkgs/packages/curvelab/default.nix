@@ -23,6 +23,11 @@ stdenv.mkDerivation rec {
     install -Dm755 fdct_usfft_cpp/src/libfdct_usfft.a $out/lib/fdct_usfft_cpp/src/libfdct_usfft.a
     install -Dm755 fdct_wrapping_cpp/src/libfdct_wrapping.a $out/lib/fdct_wrapping_cpp/src/libfdct_wrapping.a
 
+    install -Dm644 fdct3d/src/*.hpp $out/lib/fdct3d/src/
+    install -Dm644 fdct3d_outcore/src/*.hpp $out/lib/fdct3d_outcore/src/
+    install -Dm644 fdct_usfft_cpp/src/*.hpp $out/lib/fdct_usfft_cpp/src/
+    install -Dm644 fdct_wrapping_cpp/src/*.hpp $out/lib/fdct_wrapping_cpp/src/
+
     runHook postInstall
   '';
 
