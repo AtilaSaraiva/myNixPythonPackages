@@ -12,19 +12,6 @@ rec {
     curvelab = self.curvelab;
   };
 
-  pythonOverrides = python-self: python-super: {
-    devito = python-super.devito.overrideAttrs (oldAttrs: {
-      src = super.fetchFromGitHub {
-        owner = "devitocodes";
-        repo = "devito";
-        rev = "7cb52eded4038c1a0ee92cfd04d3412c48f2fb7c";
-        sha256 = "sha256-75hkkufQK9Nv65DBz8cmYTfkxH/UUWDQK/rGUDULvjM=";
-      };
-    });
-  };
-
-  python3 = super.python3.override { packageOverrides = self.pythonOverrides; };
-
   curvelab = super.callPackage ./pkgs/packages/curvelab {
     inherit (self) fetchurl;
     fftw2 = self.fftw2;
