@@ -17,6 +17,10 @@ rec {
     fftw2 = self.fftw2;
   };
 
+  fortran-fpm = super.callPackage ./pkgs/packages/fpm {
+    inherit (self) fetchurl gfortran;
+  };
+
   fftw2 = super.callPackage ./pkgs/packages/fftw2 {
     inherit (self) fetchurl;
   };
