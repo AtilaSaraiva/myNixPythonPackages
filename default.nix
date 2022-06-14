@@ -21,6 +21,10 @@ rec {
     inherit (self) fetchurl gfortran;
   };
 
+  pyplot-fortran = super.callPackage ./pkgs/packages/pyplot-fortran {
+    inherit (self) fetchFromGitHub fortran-fpm;
+  };
+
   fftw2 = super.callPackage ./pkgs/packages/fftw2 {
     inherit (self) fetchurl;
   };
