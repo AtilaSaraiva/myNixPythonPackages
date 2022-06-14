@@ -15,6 +15,7 @@ in
 mkShell {
   buildInputs = [
     python-with-my-packages
+    pyplot-fortran
   ];
 }
 
