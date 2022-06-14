@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchurl, gfortran }:
+{ stdenv, lib, fetchurl, gfortran, makeWrapper }:
 
 stdenv.mkDerivation rec {
   pname = "fpm";
@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
 
   dontUnpack = true;
 
-  nativeBuildInputs = [ gfortran ];
+  nativeBuildInputs = [ gfortran makeWrapper ];
 
   buildPhase = ''
     gfortran ${src} -o fpm
@@ -19,6 +19,9 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     install -Dm755 -t $out/bin/ fpm
+
+    wrapProgram $out/bin/fpm \
+      --prefix PATH : ${lib.makeBinPath [ gfortran ]}
   '';
 
   meta = with lib; {
