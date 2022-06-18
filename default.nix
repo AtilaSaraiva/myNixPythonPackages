@@ -28,4 +28,9 @@ rec {
   fftw2 = super.callPackage ./pkgs/packages/fftw2 {
     inherit (self) fetchurl;
   };
+
+  deepwave = super.python3Packages.callPackage ./pkgs/python-packages/deepwave {
+    inherit (self.python3Packages) pytorch pytestCheckHook scipy;
+    inherit (self) fetchFromGitHub ninja which;
+  };
 }
