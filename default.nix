@@ -4,6 +4,15 @@ rec {
     inherit (self.python3Packages) scipy pyfftw pywavelets numba llvmlite scikit-fmm setuptools-scm;
   };
 
+  sotb-wrapper = super.python3Packages.callPackage ./pkgs/python-packages/sotb-wrapper {
+    #inherit (self.python3Packages);
+    inherit (self) fetchFromGitHub fobis;
+  };
+
+  fobis = super.python3Packages.callPackage ./pkgs/packages/fobis {
+    inherit (self.python3Packages) fetchPypi;
+  };
+
   curvelops = super.python3Packages.callPackage ./pkgs/python-packages/curvelops {
     inherit (self.python3Packages) scipy pybind11 pytestCheckHook;
     inherit (self) fetchFromGitHub;
