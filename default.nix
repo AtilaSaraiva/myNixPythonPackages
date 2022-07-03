@@ -12,6 +12,11 @@ rec {
     curvelab = self.curvelab;
   };
 
+    halide = super.callPackage ./pkgs/packages/halide {
+    llvmPackages = self.llvmPackages_12;
+    inherit (self) fetchFromGitHub cmake libpng libjpeg mesa eigen openblas lapack blas;
+  };
+
   curvelab = super.callPackage ./pkgs/packages/curvelab {
     inherit (self) fetchurl;
     fftw2 = self.fftw2;

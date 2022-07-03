@@ -15,8 +15,9 @@ let
 in
 mkShell {
   buildInputs = [
-    python-with-my-packages
+    #python-with-my-packages
     #pyplot-fortran
+    halide
   ];
 }
 
