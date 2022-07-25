@@ -4,6 +4,10 @@ rec {
     inherit (self.python3Packages) scipy pyfftw pywavelets numba llvmlite scikit-fmm setuptools-scm;
   };
 
+  tiler = super.python3Packages.callPackage ./pkgs/python-packages/tiler {
+    inherit (self.python3Packages) numpy tqdm pytestCheckHook;
+  };
+
   curvelops = super.python3Packages.callPackage ./pkgs/python-packages/curvelops {
     inherit (self.python3Packages) scipy pybind11 pytestCheckHook;
     inherit (self) fetchFromGitHub;
