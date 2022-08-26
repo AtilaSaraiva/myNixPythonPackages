@@ -17,6 +17,7 @@ in
 mkShell {
   buildInputs = [
     python-with-my-packages
+    tapenade
     #pyplot-fortran
     #halide
   ];

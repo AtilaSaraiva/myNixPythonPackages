@@ -16,7 +16,7 @@ rec {
     curvelab = self.curvelab;
   };
 
-    halide = super.callPackage ./pkgs/packages/halide {
+  halide = super.callPackage ./pkgs/packages/halide {
     llvmPackages = self.llvmPackages_12;
     inherit (self) fetchFromGitHub cmake libpng libjpeg mesa eigen openblas lapack blas;
   };
@@ -24,6 +24,10 @@ rec {
   curvelab = super.callPackage ./pkgs/packages/curvelab {
     inherit (self) fetchurl;
     fftw2 = self.fftw2;
+  };
+
+  tapenade = super.callPackage ./pkgs/packages/tapenade {
+    inherit (self) fetchurl jdk11 makeWrapper autoPatchelfHook gcc gfortran;
   };
 
   fortran-fpm = super.callPackage ./pkgs/packages/fpm {
