@@ -11,6 +11,12 @@ rec {
   pythonOverrides = python-self: python-super: {
     devito = python-super.devito.overridePythonAttrs (oldAttrs: {
       doCheck = false;
+      src = self.fetchFromGitHub {
+        owner = "devitocodes";
+        repo = "devito";
+        rev = "v4.7.1";
+        sha256 = "sha256-crKTxlueE8NGjAqu625iFvp35UK2U7+9kl8rpbzf0gs=";
+      };
     });
   };
 
