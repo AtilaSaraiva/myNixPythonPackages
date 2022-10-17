@@ -8,6 +8,15 @@ rec {
     inherit (self.python3Packages) numpy tqdm pytestCheckHook;
   };
 
+  pythonOverrides = python-self: python-super: {
+    devito = python-super.devito.overridePythonAttrs (oldAttrs: {
+      doCheck = false;
+    });
+  };
+
+  python3 =
+      super.python3.override { packageOverrides = self.pythonOverrides; };
+
   curvelops = super.python3Packages.callPackage ./pkgs/python-packages/curvelops {
     inherit (self.python3Packages) scipy pybind11 pytestCheckHook;
     inherit (self) fetchFromGitHub;
