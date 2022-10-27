@@ -8,6 +8,23 @@ rec {
     inherit (self.python3Packages) numpy tqdm pytestCheckHook;
   };
 
+  probscale = super.python3Packages.callPackage ./pkgs/python-packages/probscale {
+    inherit (self.python3Packages) numpy matplotlib pytestCheckHook;
+  };
+
+  temp = super.python3Packages.callPackage ./pkgs/python-packages/temp {
+    inherit (self.python3Packages) pytestCheckHook;
+  };
+
+  pyevtk = super.python3Packages.callPackage ./pkgs/python-packages/pyevtk {
+    inherit (self.python3Packages) pytestCheckHook pytest-cov numpy wheel codecov twine check-manifest readme_renderer black pytest-runner;
+  };
+
+  pygeostat = super.python3Packages.callPackage ./pkgs/python-packages/pygeostat {
+    inherit (self.python3Packages) pytestCheckHook pyperclip pytest numpy pandas scipy scikit-learn statsmodels numba matplotlib h5py pillow tqdm nbformat nbconvert jupyter-client jupyter;
+    inherit (self) probscale pyevtk temp;
+  };
+
   pythonOverrides = python-self: python-super: {
     devito = python-super.devito.overridePythonAttrs (oldAttrs: {
       doCheck = false;

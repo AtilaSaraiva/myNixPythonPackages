@@ -7,7 +7,8 @@ with import sources.nixpkgs {
 let
   my-python-packages = python-packages: with python-packages; [
     #curvelops
-    devito
+    #devito
+    pygeostat
     #deepwave
     #tiler
     # other python packages you want
